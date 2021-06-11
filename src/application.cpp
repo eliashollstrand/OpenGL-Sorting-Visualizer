@@ -73,7 +73,6 @@ int main() {
 
     while (!glfwWindowShouldClose(window))
     {
-        /* Render */
         glClear(GL_COLOR_BUFFER_BIT);
 
         if (shouldSort) {
