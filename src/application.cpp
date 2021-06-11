@@ -20,7 +20,7 @@ float RandomNumber(float min, float max) {
     return (min + 1) + (((float)rand()) / (float)RAND_MAX) * (max - (min + 1));
 }
 
-void display(int i) {
+void display(int i, Rect rect) {
     glBegin(GL_POLYGON);
     glColor3f(1.0, 0, 0);
     glVertex2f(-0.91 + i * 0.1, rect.height);
@@ -89,13 +89,13 @@ int main() {
             auto v = selectionSort(vector);
             for (int i = 0; i < v.size(); i++) {
                 Rect rect = v[i];
-                display(i);
+                display(i, rect);
             }
         }
         else {
             for (int i = 0; i < vector.size(); i++) {
                 Rect rect = vector[i];
-                display(i);
+                display(i, rect);
             }
         }
 
