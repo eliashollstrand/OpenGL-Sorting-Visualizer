@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ float RandomNumber(float min, float max) {
     return (min + 1) + (((float)rand()) / (float)RAND_MAX) * (max - (min + 1));
 }
 
-void display(int i) {
+void display(int i, Rect rect) {
     glBegin(GL_POLYGON);
     glColor3f(1.0, 0, 0);
     glVertex2f(-0.91 + i * 0.1, rect.height);
@@ -63,7 +64,7 @@ int main() {
     if (!glfwInit())
         return -1;
 
-    window = glfwCreateWindow(1200, 600, "Sorting", NULL, NULL);
+    window = glfwCreateWindow(1200, 600, "Sorting Visualizer", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -74,6 +75,7 @@ int main() {
 
 
     vector<Rect> vector;
+    srand(time(NULL));
     for (int i = 0; i < 20; i++) {
         float height = RandomNumber(-1, 1);
         Rect r(height);
@@ -89,13 +91,13 @@ int main() {
             auto v = selectionSort(vector);
             for (int i = 0; i < v.size(); i++) {
                 Rect rect = v[i];
-                display(i);
+                display(i, rect);
             }
         }
         else {
             for (int i = 0; i < vector.size(); i++) {
                 Rect rect = vector[i];
-                display(i);
+                display(i, rect);
             }
         }
 
