@@ -48,7 +48,6 @@ vector<Rect> selectionSort(vector<Rect> v) {
     return v;
 }
 
-
 // Run algorithm on ENTER input
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
