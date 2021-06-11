@@ -33,7 +33,6 @@ void display(int i, Rect rect) {
 
 vector<Rect> selectionSort(vector<Rect> v) {
     for (int i = 0; i < v.size(); i++) {
-        Rect current = v[i];
         float min = v[i].height;
         int minIndex = i;
         for (int j = i; j < v.size(); j++) {
