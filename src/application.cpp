@@ -20,6 +20,16 @@ float RandomNumber(float min, float max) {
     return (min + 1) + (((float)rand()) / (float)RAND_MAX) * (max - (min + 1));
 }
 
+void display(int i) {
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 0, 0);
+    glVertex2f(-0.91 + i * 0.1, rect.height);
+    glVertex2f(-0.91 + i * 0.1, -1);
+    glVertex2f(-1 + i * 0.1, -1);
+    glVertex2f(-1 + i * 0.1, rect.height);
+    glEnd();
+}
+
 vector<Rect> selectionSort(vector<Rect> v) {
     for (int i = 0; i < v.size(); i++) {
         Rect current = v[i];
@@ -79,28 +89,13 @@ int main() {
             auto v = selectionSort(vector);
             for (int i = 0; i < v.size(); i++) {
                 Rect rect = v[i];
-
-                glBegin(GL_POLYGON);
-                glColor3f(1.0, 0, 0);
-                glVertex2f(-0.91 + i * 0.1, rect.height);
-                glVertex2f(-0.91 + i * 0.1, -1);
-                glVertex2f(-1 + i * 0.1, -1);
-                glVertex2f(-1 + i * 0.1, rect.height);
-                glEnd();
+                display(i);
             }
         }
         else {
             for (int i = 0; i < vector.size(); i++) {
-
                 Rect rect = vector[i];
-
-                glBegin(GL_POLYGON);
-                glColor3f(1.0, 0, 0);
-                glVertex2f(-0.91 + i * 0.1, rect.height);
-                glVertex2f(-0.91 + i * 0.1, -1);
-                glVertex2f(-1 + i * 0.1, -1);
-                glVertex2f(-1 + i * 0.1, rect.height);
-                glEnd();
+                display(i);
             }
         }
 
