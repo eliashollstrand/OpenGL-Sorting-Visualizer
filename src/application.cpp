@@ -7,9 +7,6 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
-#include <chrono>
-#include <thread>
-#include <functional>
 
 #define LOG(x) cout << x << endl;
 
@@ -89,7 +86,6 @@ int main(int argc, char** argv) {
         vector.push_back(r);
     }
    
-    
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
