@@ -1,9 +1,17 @@
+// Input:
+// S = Selection sort
+
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
+#include <thread>
+#include <functional>
+
+#define LOG(x) cout << x << endl;
 
 using namespace std;
 
@@ -17,7 +25,7 @@ class Rect {
         }
 };
 
-float RandomNumber(float min, float max) {
+float randomNumber(float min, float max) {
     return (min + 1) + (((float)rand()) / (float)RAND_MAX) * (max - (min + 1));
 }
 
@@ -50,16 +58,17 @@ vector<Rect> selectionSort(vector<Rect> v) {
 // Run algorithm on ENTER input
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_ENTER && action == GLFW_PRESS) {
+    if (key == GLFW_KEY_S && action == GLFW_PRESS) {
         shouldSort = !shouldSort; // Assigns the opposite value to shouldSort
+        if(shouldSort)
+            LOG("Sorted with algorithm: Selection Sort");
     }
 }
 
-
-int main() {
+int main(int argc, char** argv) {
     GLFWwindow* window;
 
-    if (!glfwInit())
+    if (!glfwInit()) 
         return -1;
 
     window = glfwCreateWindow(1200, 600, "Sorting Visualizer", NULL, NULL);
@@ -75,12 +84,12 @@ int main() {
     vector<Rect> vector;
     srand(time(NULL));
     for (int i = 0; i < 20; i++) {
-        float height = RandomNumber(-1, 1);
+        float height = randomNumber(-1, 1);
         Rect r(height);
         vector.push_back(r);
     }
    
-
+    
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -90,6 +99,7 @@ int main() {
             for (int i = 0; i < v.size(); i++) {
                 Rect rect = v[i];
                 display(i, rect);
+                
             }
         }
         else {
@@ -103,7 +113,7 @@ int main() {
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
     glfwTerminate();
+
     return 0;
 }
