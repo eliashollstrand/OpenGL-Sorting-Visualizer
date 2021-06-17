@@ -1,5 +1,6 @@
 // Input:
 // S = Selection sort
+// B - Bubble sort
 
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -12,7 +13,8 @@
 
 using namespace std;
 
-bool shouldSort = false;
+bool selection = false;
+bool bubble = false;
 
 class Rect {
     public:
@@ -52,17 +54,43 @@ vector<Rect> selectionSort(vector<Rect> v) {
     return v;
 }
 
+vector<Rect> bubbleSort(vector<Rect> v) {
+    for (int i = 0; i < v.size(); i++) {
+        int numberOfSwaps = 0;
+
+        for (int j = 0; j < v.size() - 1; j++) {
+            if (v[j].height > v[j + 1].height) {
+                swap(v[j], v[j + 1]);
+                numberOfSwaps++;
+            }
+        }
+
+        if (numberOfSwaps == 0) {
+            break;
+        }
+    }
+    return v;
+}
+
 // Run algorithm on ENTER input
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_S && action == GLFW_PRESS) {
-        shouldSort = !shouldSort; // Assigns the opposite value to shouldSort
-        if(shouldSort)
+    if(key == GLFW_KEY_S && action == GLFW_PRESS) {
+        selection = !selection; // Assigns the opposite value to shouldSort
+        if(selection)
             LOG("Sorted with algorithm: Selection Sort");
+    } else if (key == GLFW_KEY_B && action == GLFW_PRESS) {
+        bubble = !bubble; // Assigns the opposite value to shouldSort
+        if (bubble)
+            LOG("Sorted with algorithm: Bubble Sort");
     }
 }
 
 int main(int argc, char** argv) {
+    LOG("Sorting Algorithms:\n");
+    LOG("Selection Sort (S)");
+    LOG("Bubble Sort (B)\n");
+
     GLFWwindow* window;
 
     if (!glfwInit()) 
@@ -86,19 +114,22 @@ int main(int argc, char** argv) {
         vector.push_back(r);
     }
    
+    std::vector<Rect> v;
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        if (shouldSort) {
-            auto v = selectionSort(vector);
+        if(selection || bubble) {
+            if (selection)
+                v = selectionSort(vector);
+            else if (bubble)
+                v = bubbleSort(vector);
+
             for (int i = 0; i < v.size(); i++) {
                 Rect rect = v[i];
                 display(i, rect);
-                
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < vector.size(); i++) {
                 Rect rect = vector[i];
                 display(i, rect);
