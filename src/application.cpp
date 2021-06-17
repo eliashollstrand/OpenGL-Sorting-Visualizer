@@ -86,11 +86,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     }
 }
 
-<<<<<<< HEAD
 int main() {
-=======
-int main(int argc, char** argv) {
->>>>>>> 8b3d6d77696f8f0256e1cacdd20078549f7e4edd
     LOG("Sorting Algorithms:\n");
     LOG("Selection Sort (S)");
     LOG("Bubble Sort (B)\n");
