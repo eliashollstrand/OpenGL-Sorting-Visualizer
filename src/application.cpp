@@ -72,7 +72,7 @@ vector<Rect> bubbleSort(vector<Rect> v) {
     return v;
 }
 
-// Run algorithm on ENTER input
+// Run algorithm on input
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if(key == GLFW_KEY_S && action == GLFW_PRESS) {
@@ -141,6 +141,4 @@ int main() {
         glfwPollEvents();
     }
     glfwTerminate();
-
-    return 0;
 }
